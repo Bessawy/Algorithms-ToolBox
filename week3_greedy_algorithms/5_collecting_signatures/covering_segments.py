@@ -11,6 +11,21 @@ def optimal_points(segments):
         points.append(s.end)
     return points
 
+def lay_chu_ki(list_time):
+    list_time.sort(key=lambda x: x[1])
+    idx = 0
+    selected_points = []
+    
+    while idx != len(list_time):
+        selected_point = list_time[idx][1]
+        
+        while idx != len(list_time) and list_time[idx][0] <= selected_point:
+            idx += 1
+        
+        selected_points.append(selected_point)
+    
+    return selected_points
+
 
 if __name__ == '__main__':
     input = stdin.read()
