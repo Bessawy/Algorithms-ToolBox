@@ -6,26 +6,19 @@ Segment = namedtuple('Segment', 'start end')
 def optimal_points(segments):
     points = []
     # write your code here
-    for s in segments:
-        points.append(s.start)
-        points.append(s.end)
+    i = 0
+    m = len(segments)
+    segments.sort(key= lambda x: x.end)
+
+    while(i < m):
+        end_point = segments[i].end
+
+        while(i < m and end_point >= segments[i].start):
+            i+=1
+        
+        points.append(end_point)
+
     return points
-
-def lay_chu_ki(list_time):
-    list_time.sort(key=lambda x: x[1])
-    idx = 0
-    selected_points = []
-    
-    while idx != len(list_time):
-        selected_point = list_time[idx][1]
-        
-        while idx != len(list_time) and list_time[idx][0] <= selected_point:
-            idx += 1
-        
-        selected_points.append(selected_point)
-    
-    return selected_points
-
 
 if __name__ == '__main__':
     input = stdin.read()
